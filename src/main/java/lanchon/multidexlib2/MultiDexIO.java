@@ -22,8 +22,6 @@ import com.android.tools.smali.dexlib2.iface.MultiDexContainer;
 
 public class MultiDexIO {
 
-	public static final int DEFAULT_MAX_THREADS = 4;
-
 	private MultiDexIO() {}
 
 	// Read
@@ -103,7 +101,6 @@ public class MultiDexIO {
 		DexFileNameIterator nameIterator = new DexFileNameIterator(namer);
 		if (threadCount <= 0) {
 			threadCount = Runtime.getRuntime().availableProcessors();
-			if (threadCount > DEFAULT_MAX_THREADS) threadCount = DEFAULT_MAX_THREADS;
 		}
 		if (threadCount > 1 && multiDex && minMainDexClassCount == 0 && !minimalMainDex) {
 			DexIO.writeMultiDexDirectoryMultiThread(threadCount, directory, nameIterator, dexFile, maxDexPoolSize,
